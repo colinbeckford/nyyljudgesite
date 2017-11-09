@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title> Player List Input </title>
+    <h1> Player List Input </h1>
+    <h4> Input the list of players that will be competing in the division. </h4>
+    <script>
+    function createList()
+    {
+      var list = document.getElementById('input').value.split('\n');
+      console.log(list);
+    }
+    </script>
+  </head>
+
+  <body>
+    <textarea cols="20" id="input"> Input list here. </textarea>
+    <br>
+    <button type="button" id="submit" onclick="createList()"> Submit List </button>
+  </body>
+
+</html>

@@ -1,0 +1,68 @@
+
+<html>
+  <head>
+    <!-- database src info -->
+    <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+    <script>
+    const config =
+    {
+      apiKey: "AIzaSyCUSBAQ79w4F1Xv-fvIQ0MRMbYfiIPkO6I",
+      authDomain: "becko-firebase-test.firebaseapp.com",
+      databaseURL: "https://becko-firebase-test.firebaseio.com",
+      projectId: "becko-firebase-test",
+      storageBucket: "becko-firebase-test.appspot.com",
+      messagingSenderId: "1063326514913"
+    };
+    firebase.initializeApp(config);
+    </script>
+
+    <title>
+      Firebase Test
+    </title>
+    <h1>
+      Firebase Test
+    </h1>
+  </head>
+
+  <body>
+    <!-- input box -->
+    <textarea cols="20" id="input"> Input text here. </textarea>
+    <br>
+    <!-- submit button with onclick create()-->
+    <button type="button" id="submit" onclick="create()"> Submit </button>
+    <!-- script for adding to database -->
+    <script>
+
+    function create()
+    {
+      //firebaseRef is linked to the root of the db
+      var firebaseRef = firebase.database();
+      //indexRef is linked to the player child
+      var indexRef = firebaseRef.ref('players');
+      /**
+      input is the array of the player list input
+      for now, input styling is each player line is formatted Name:Raw Score
+      **/
+      var input = document.getElementById('input').value.split('\n');
+      /**
+      for loop that creates an array "player" which has 2 index values -
+      [0] is name, [1] is score
+      input data [i] split by a colon
+      indexRef.child(i).set(data) means that a child of the players section
+      is created with definition of the index of the array as the object name,
+      and 2 properties of name and score.
+      **/
+      for (var i=0; i<input.length; i++)
+      {
+        var player = input[i].split(':');
+        var data =
+        {
+          Name: player[0],
+          Score: player[1]
+        }
+        indexRef.child(i).set(data);
+      }
+    }
+    </script>
+  </body>
+</html>
